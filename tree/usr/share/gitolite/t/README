@@ -1,0 +1,13 @@
+
+============================================
+WARNING: THE TEST SUITE DELETES STUFF FIRST!
+============================================
+
+Please run the tests ONLY on a userid where it's ok to LOSE DATA.
+
+On such a userid, clone gitolite then run this command in the clone:
+
+    GITOLITE_TEST=y prove
+
+http://gitolite.com/gitolite/testing.html has more details.  It will
+also help you try out gitolite if you want to go beyond just the test suite.
