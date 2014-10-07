@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# GITTED IMPORT: /local.repository.git -> gitolite-admin repository
+#
+
+. /usr/share/gitted/export.init.bash || exit 2
+
+[ -z "$GITOLITE_ADMIN_REPOSITORY" ] && GITOLITE_ADMIN_REPOSITORY=~git/repositories/gitolite-admin.git
+[ -z "$GITOLITE_ADMIN_BRANCH" ] && GITOLITE_ADMIN_BRANCH=master
+
+state_ref=$(gitted_state_ref_name $GITTED_WORKING_TREE)
+# $gitted_last_commit is the head commit for branch $GITTED_GIT_BRANCH
+
+if [ "$gitted_last_commit" != "$(git show-ref -s $state_ref)" ]; then
+
+    cd /local.repository.git
+
+    nef_cmd --log-prefix gitolite-push -- \
+        sudo -u git gitolite push $GITOLITE_ADMIN_REPOSITORY +$gitted_last_commit:$GITOLITE_ADMIN_BRANCH
+
+    message="successfully pushed $gitted_last_commit to $GITOLITE_ADMIN_REPOSITORY as $GITOLITE_ADMIN_BRANCH"
+    git update-ref -m "$message" $state_ref $gitted_last_commit
+
+fi
