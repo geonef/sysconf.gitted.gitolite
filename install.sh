@@ -12,9 +12,11 @@ fi
 # "git" UNIX account
 grep -q ^git: /etc/passwd || {
 
-    useradd -d /home/git -m git
-    chown git:git /home/git
+    useradd -d /var/lib/git -m git
+    chown git:git /var/lib/git
     dir=$(pwd)
-    cd /home/git
+    cd /var/lib/git
     sudo -u git gitolite setup -pk $dir/bootstrap.admin.key.pub
 }
+
+sysconf_require_packages lighttpd
