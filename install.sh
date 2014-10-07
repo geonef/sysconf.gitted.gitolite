@@ -16,5 +16,4 @@ grep -q ^git: /etc/passwd || {
     dir=$(pwd)
     cd /home/git
     sudo -u git gitolite setup -pk $dir/bootstrap.admin.key.pub
-
 }
