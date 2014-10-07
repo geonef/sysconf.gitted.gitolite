@@ -11,12 +11,8 @@ fi
 # "git" UNIX account
 grep -q ^git: /etc/passwd || {
     useradd -d /home/git -m git
-    # chown -R git:git /home/git
+    chown git:git /home/git
     dir=$(pwd)
     cd /home/git
-
-    # pub_key_file=$(mktemp)
-    # chmod 644 $pub_key_file
     sudo -u git gitolite setup -pk $dir/bootstrap.admin.key.pub
 }
-# sysconf_require_packages
