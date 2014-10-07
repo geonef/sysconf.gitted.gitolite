@@ -4,7 +4,6 @@
 
 # "git" UNIX account
 grep -q ^git: /etc/passwd || {
-    useradd git
+    useradd -d /home/git -m git
 }
-
 # sysconf_require_packages
