@@ -10,9 +10,11 @@ fi
 
 # "git" UNIX account
 grep -q ^git: /etc/passwd || {
+
     useradd -d /home/git -m git
     chown git:git /home/git
     dir=$(pwd)
     cd /home/git
     sudo -u git gitolite setup -pk $dir/bootstrap.admin.key.pub
+
 }
