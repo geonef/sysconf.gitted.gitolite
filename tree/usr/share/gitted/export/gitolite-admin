@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# GITTED EXPORT: gitolite-admin repository -> /local.repository.git
+#
+
+. /usr/share/gitted/export.init.bash || exit 2
+
+[ -z "$GITOLITE_ADMIN_REPOSITORY" ] && GITOLITE_ADMIN_REPOSITORY=~git/repositories/gitolite-admin.git
+[ -z "$GITOLITE_ADMIN_BRANCH" ] && GITOLITE_ADMIN_BRANCH=master
+
+state_ref=$(gitted_state_ref_name $GITTED_WORKING_TREE)
+
+nef_cmd --log-prefix git-fetch -- \
+    git fetch $GITOLITE_ADMIN_REPOSITORY +$GITOLITE_ADMIN_BRANCH:$GITTED_GIT_BRANCH
+
+commit=$(git show-ref -s $GITTED_GIT_BRANCH)
+
+if [ "$gitted_last_commit" != "$commit" ]; then
+
+    message="updated $state_ref from ${gitted_last_commit} to ${commit} after fetch ${GITOLITE_ADMIN_REPOSITORY}, branch: ${GITOLITE_ADMIN_BRANCH}"
+    git update-ref -m "$message" $state_ref $commit
+
+fi
