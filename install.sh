@@ -18,7 +18,13 @@ grep -q ^git: /etc/passwd || {
     chown git:git /var/lib/git
     dir=$(pwd)
     cd /var/lib/git
-    sudo -u git gitolite setup -pk $dir/bootstrap.admin.key.pub
+    pubfile=/tmp/admin.pub
+    # This is a dumb public key -- the private key was long forgotten
+    # Anyway, gitolite needs a key to setup, so we provide this, as an example also.
+    echo ssh-dss AAAAB3NzaC1kc3MAAACBAPK7tv8lmSe7fO0aJ6YPBWIwewyvBREznIehD8+WJ15DcBwxaqTEeWJ9t3deweEWFWAXeoWVjgQhb1FQFjbKbybbgDEbXmilkPTTCJUtko8szeypQmTHiZUqUsnGNFLgmlvu16oyL8lupcLnjdfZNJcp6TCHlJ7Rsuu/sbU2vkQZAAAAFQDtn6TG7Rhsn8cuYNfoEtWTagIhzQAAAIEAxdSuFRGHq5ad3J4VSc1b0am7hb+FhtuaNeJ60ZAJXhC4lg/VKCeL5M8Gckb7APfZp7grf1dhXwxNDoydpFl3X3B2OJpHcSrV5CnXQVoVlcwr6rDTvQ6pFGX1mvWFU05xzHOcsr5DzVIDwT9kgwwD4/6OKrajmkQ8ORwP83hq3AgAAACBAOyUMuG0z8ks+IS0mGVJRtc9YGiYwqiUmav2NOvzLfxJGf0EfYmoeLd5bqp7TzYLaHrkbICa8OssexuuxppBE0ivgVBrs7wFsSUDLpb6ZAVYAr/mG/fRIpUWtbc7djW0x9Ffrx+uoJDqgrxmgjnrVkQfuAC5rlV7zFO0bVNjIEYS root@ubuntu >$pubfile
+
+    sudo -u git gitolite setup -pk $pubfile
+    rm $pubfile
 }
 gitolite_repositories=/var/lib/git/repositories
 
