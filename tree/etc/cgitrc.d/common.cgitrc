@@ -3,7 +3,7 @@
 #
 
 # if cgit messes up links, use a virtual-root. For example has cgit.example.org/ this value:
-virtual-root=/git/
+virtual-root=/
 
 # scan-path=/var/lib/git/repositories
 
@@ -15,7 +15,7 @@ cache-size=1000
 # clone-url=git://foo.org/$CGIT_REPO_URL git@foo.org:$CGIT_REPO_URL
 
 # Specify the css url
-css=/git/cgit.css
+css=/cgit.css
 
 
 # Show extra links for each repository on the index page
@@ -35,11 +35,11 @@ enable-log-linecount=1
 
 
 # Add a cgit favicon
-favicon=/git/favicon.ico
+favicon=/favicon.ico
 
 
 # Use a custom logo
-logo=/git/cgit.png
+logo=/cgit.png
 
 
 # Enable statistics per week, month and quarter
