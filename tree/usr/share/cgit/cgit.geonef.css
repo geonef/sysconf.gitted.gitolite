@@ -1,0 +1,5 @@
+@import url("cgit.css");
+
+div#cgit { font-family: "Open Sans", sans-serif; }
+div#cgit table#header td.main,
+  div#cgit td.toplevel-repo { font-family: mono; }
