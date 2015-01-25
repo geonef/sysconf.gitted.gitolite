@@ -55,13 +55,35 @@ max-stats=quarter
 # TO BE SET IN generated.cgitrc
 ## root-desc=tracking the foobar development
 
+# Flag which, when set to "1", will make cgit display remote branches
+# in the summary and refs views
+enable-remote-branches=1
+
 # Include some more info about example.com on the index page
 root-readme=/var/www/htdocs/about.html
 
+# Flag which, when set to "1", will make cgit use the subject of the
+# parent commit as link text when generating links to parent commits
+# in commit view.
+enable-subject-links=1
 
 # Allow download of tar.gz, tar.bz2 and zip-files
 snapshots=tar.gz tar.bz2 zip
 
+# Flag which, when set to "1", will allow cgit to use git config to set
+# any repo specific settings. This option is used in conjunction with
+# "scan-path", and must be defined prior, to augment repo-specific
+# settings. The keys gitweb.owner, gitweb.category, and gitweb.description
+# will map to the cgit keys repo.owner, repo.section, and repo.desc,
+# respectively. All git config keys that begin with "cgit." will be mapped
+# to the corresponding "repo." key in cgit. Default value: "0". See also:
+# scan-path, section-from-path.
+enable-git-config=1
+
+# If set to "1" and scan-path is enabled, if any repositories are found
+# with a suffix of ".git", this suffix will be removed for the url and
+# name. This must be defined prior to scan-path.
+remove-suffix=1
 
 ##
 ## List of common mimetypes
@@ -74,3 +96,44 @@ mimetype.jpeg=image/jpeg
 mimetype.pdf=application/pdf
 mimetype.png=image/png
 mimetype.svg=image/svg+xml
+
+
+# Highlight source code with python pygments-based highlighter
+source-filter=/var/www/cgit/filters/syntax-highlighting.py
+
+# Format markdown, restructuredtext, manpages, text files, and html files
+# through the right converters
+about-filter=/var/www/cgit/filters/about-formatting.sh
+
+##
+## Search for these files in the root of the default branch of repositories
+## for coming up with the about page:
+##
+readme=:README.md
+readme=:readme.md
+readme=:README.mkd
+readme=:readme.mkd
+readme=:README.rst
+readme=:readme.rst
+readme=:README.html
+readme=:readme.html
+readme=:README.htm
+readme=:readme.htm
+readme=:README.txt
+readme=:readme.txt
+readme=:README
+readme=:readme
+readme=:INSTALL.md
+readme=:install.md
+readme=:INSTALL.mkd
+readme=:install.mkd
+readme=:INSTALL.rst
+readme=:install.rst
+readme=:INSTALL.html
+readme=:install.html
+readme=:INSTALL.htm
+readme=:install.htm
+readme=:INSTALL.txt
+readme=:install.txt
+readme=:INSTALL
+readme=:install

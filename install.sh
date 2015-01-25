@@ -2,7 +2,9 @@
 
 . /usr/lib/sysconf.base/common.sh
 
-INSTALL_CGIT_URL=git://hjemli.net/pub/git/cgit
+#INSTALL_CGIT_URL=git://hjemli.net/pub/git/cgit
+INSTALL_CGIT_URL=git://git.zx2c4.com/cgit
+INSTALL_CGIT_REF=v0.10.2
 
 if grep -q "^AcceptEnv LANG LC_\*$" /etc/ssh/sshd_config; then
     # Avoid the messages like: "perl: warning: Setting locale failed."
@@ -36,7 +38,7 @@ if true; then
         nef_log "Building cgit from: $INSTALL_CGIT_URL"
         sysconf_require_packages libssl-dev gcc make
         tmp_dir=$(mktemp -d)
-        git clone $INSTALL_CGIT_URL $tmp_dir
+        git clone -b $INSTALL_CGIT_REF $INSTALL_CGIT_URL $tmp_dir
         cd $tmp_dir
         make get-git
         make
