@@ -122,5 +122,4 @@ EXTENSION="${BASENAME##*.}"
 # exec highlight --force -f -I -X -S "$EXTENSION" 2>/dev/null
 
 # This is for version 3
-echo coucou
 exec highlight --force --inline-css -f -I -O xhtml -S "$EXTENSION" 2>&1 #2>/dev/null
