@@ -2,9 +2,13 @@
 
 . /usr/lib/sysconf.base/common.sh
 
+# REQUIRED PACKAGES
+sysconf_require_packages openssh-server lighttpd highlight
+
 #INSTALL_CGIT_URL=git://hjemli.net/pub/git/cgit
 INSTALL_CGIT_URL=git://git.zx2c4.com/cgit
-INSTALL_CGIT_REF=v0.10.2
+#INSTALL_CGIT_REF=v0.10.2
+INSTALL_CGIT_REF=master
 
 if grep -q "^AcceptEnv LANG LC_\*$" /etc/ssh/sshd_config; then
     # Avoid the messages like: "perl: warning: Setting locale failed."
@@ -30,8 +34,6 @@ grep -q ^git: /etc/passwd || {
 }
 gitolite_repositories=/var/lib/git/repositories
 
-# REQUIRED PACKAGES
-sysconf_require_packages lighttpd highlight
 
 if true; then
     # Install cgit
