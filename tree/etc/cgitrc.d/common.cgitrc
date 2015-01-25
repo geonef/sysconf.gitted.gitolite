@@ -99,11 +99,11 @@ mimetype.svg=image/svg+xml
 
 
 # Highlight source code with python pygments-based highlighter
-source-filter=/var/www/cgit/filters/syntax-highlighting.py
+source-filter=/usr/share/cgit/filters/syntax-highlighting.local.sh
 
 # Format markdown, restructuredtext, manpages, text files, and html files
 # through the right converters
-about-filter=/var/www/cgit/filters/about-formatting.sh
+about-filter=/usr/share/cgit/filters/about-formatting.sh
 
 ##
 ## Search for these files in the root of the default branch of repositories

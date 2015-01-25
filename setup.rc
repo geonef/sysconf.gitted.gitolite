@@ -53,6 +53,7 @@ if true; then
         mkdir /usr/share/cgit
         cp cgit.css cgit.png /usr/share/cgit
         cp cgit /usr/share/cgit/cgit.cgi
+        cp -Rn filters /usr/share/cgit/
         cd /
         rm -rf $tmp_dir
         apt-get remove --yes $_build_packages \
